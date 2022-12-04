@@ -4,39 +4,41 @@ const parseInput = (rawInput: string) => rawInput;
 
 const part1 = (rawInput: string) => {
   const input = parseInput(rawInput);
-  let splittad = input.split(/\r?\n/).map((a) => a.split(","));
-  let filtered = splittad.filter((paret) => {
-    let range1 = paret[0].split("-").map((i) => +i);
-    let range2 = paret[1].split("-").map((i) => +i);
-    let r1a = range1[0];
-    let r1b = range1[1];
-    let r2a = range2[0];
-    let r2b = range2[1];
+  return input
+    .split(/\r?\n/)
+    .map((a) => a.split(","))
+    .filter((s) => {
+      let range1 = s[0].split("-").map((val) => +val);
+      let range2 = s[1].split("-").map((val) => +val);
+      let r1a = range1[0];
+      let r1b = range1[1];
+      let r2a = range2[0];
+      let r2b = range2[1];
 
-    return (r1a <= r2a && r1b >= r2b) || (r1a >= r2a && r1b <= r2b);
-  });
-  return filtered.length;
+      return (r1a <= r2a && r1b >= r2b) || (r1a >= r2a && r1b <= r2b);
+    }).length;
 };
 
 const part2 = (rawInput: string) => {
   const input = parseInput(rawInput);
-  let splittad = input.split(/\r?\n/).map((a) => a.split(","));
-  let filtered = splittad.filter((paret) => {
-    let range1 = paret[0].split("-").map((i) => +i);
-    let range2 = paret[1].split("-").map((i) => +i);
-    let r1a = range1[0];
-    let r1b = range1[1];
-    let r2a = range2[0];
-    let r2b = range2[1];
+  return input
+    .split(/\r?\n/)
+    .map((a) => a.split(","))
+    .filter((s) => {
+      let range1 = s[0].split("-").map((val) => +val);
+      let range2 = s[1].split("-").map((val) => +val);
+      let r1a = range1[0];
+      let r1b = range1[1];
+      let r2a = range2[0];
+      let r2b = range2[1];
 
-    return (
-      (r1a >= r2a && r1a <= r2b) ||
-      (r1b >= r2a && r1b <= r2b) ||
-      (r2a >= r1a && r2a <= r1b) ||
-      (r2b >= r1a && r2b <= r1b)
-    );
-  });
-  return filtered.length;
+      return (
+        (r1a >= r2a && r1a <= r2b) ||
+        (r1b >= r2a && r1b <= r2b) ||
+        (r2a >= r1a && r2a <= r1b) ||
+        (r2b >= r1a && r2b <= r1b)
+      );
+    }).length;
 };
 
 run({
