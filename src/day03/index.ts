@@ -23,7 +23,9 @@ const part2 = (rawInput: string) => {
     let forstaHalvan = Array.from(splittad[index]);
     let andraHalvan = Array.from(splittad[index+1]);
     let tredjeHalvan = Array.from(splittad[index+2]);
-    let lika = forstaHalvan.filter(char => andraHalvan.includes(char)).filter(char => tredjeHalvan.includes(char))[0];
+    let lika = forstaHalvan
+                .filter(char => andraHalvan.includes(char))
+                .filter(char => tredjeHalvan.includes(char))[0];
     omgjord.push(lika.charCodeAt(0)>96?lika.charCodeAt(0)-96:lika.charCodeAt(0)-38);
   }
 
