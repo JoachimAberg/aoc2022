@@ -74,13 +74,13 @@
         "attempts": [
           "GMPMLWNMG"
         ],
-        "time": 0.328
+        "time": 0.324
       },
       "part2": {
         "solved": true,
         "result": "GMPMLWNMG",
         "attempts": [],
-        "time": 0.418
+        "time": 0.4069
       }
     },
     {

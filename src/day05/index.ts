@@ -21,6 +21,7 @@ const part1 = (rawInput: string) => {
     } else if (rad[1] == "1") {
     } else {
       if (flyttasFromNasta) {
+        //Hade kunna göra split(" "), och använt index 1,3,5 (men tänkte inte på det under kodning)
         let indexFrom = rad.indexOf("from");
         let indexTo = rad.indexOf("to");
         let amount = +rad.substring(5, indexFrom - 1);
@@ -33,9 +34,7 @@ const part1 = (rawInput: string) => {
     }
   });
 
-  let ret = "";
-  transformerad.forEach((el) => (el.length>0?ret += el.pop():""));
-  return ret;
+  return transformerad.map((el) => el.pop()).join("");
 };
 
 const part2 = (rawInput: string) => {
@@ -69,10 +68,18 @@ const part2 = (rawInput: string) => {
     }
   });
 
-  let ret = "";
-  transformerad.forEach((el) => (el.length>0?ret += el.pop():""));
-  return ret;
+  return transformerad.map((el) => el.pop()).join("");
 };
+
+function populeraArrayFranRad(rad: string, transformerad: string[][]) {
+  let startIndex = 1;
+  for (let index = 0; index < length; index++) {
+    if (isValueIndex(rad[startIndex])) {
+      transformerad[index].push(rad[startIndex]);
+    }
+    startIndex = startIndex + 4;
+  }
+}
 
 function moveAmountFromToPoppers(
   amount: number,
@@ -86,17 +93,6 @@ function moveAmountFromToPoppers(
     }
   }
 }
-function populeraArrayFranRad(rad: string, transformerad: string[][]){
-  let startIndex = 1;
-  for (let index = 0; index < length; index++) {
-    if (isValueIndex(rad[startIndex])) {
-      transformerad[index].push(rad[startIndex]);
-    }
-    startIndex = startIndex + 4;
-  }
-}
-let isValueIndex = (val: string) => val != " " && val != undefined;
-
 
 function moveAmountFromToNonPoppers(
   amount: number,
@@ -106,6 +102,9 @@ function moveAmountFromToNonPoppers(
   let splicen = from.splice(-amount);
   splicen.forEach((s) => to.push(s));
 }
+
+let isValueIndex = (val: string) => val != " " && val != undefined;
+
 run({
   part1: {
     tests: [
