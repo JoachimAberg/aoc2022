@@ -120,38 +120,50 @@
     },
     {
       "part1": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "1676",
+        "attempts": [
+          "3370",
+          "1944",
+          "1683",
+          "1696",
+          "1697"
+        ],
+        "time": 3.4179
       },
       "part2": {
-        "solved": false,
-        "result": null,
+        "solved": true,
+        "result": "313200",
         "attempts": [],
-        "time": null
+        "time": 7.2745
       }
     },
     {
       "part1": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "6090",
+        "attempts": [
+          "182"
+        ],
+        "time": 5.2151
       },
       "part2": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "2566",
+        "attempts": [
+          "2545"
+        ],
+        "time": 8.2952
       }
     },
     {
       "part1": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "11780",
+        "attempts": [
+          "13640"
+        ],
+        "time": 0.0938
       },
       "part2": {
         "solved": false,
