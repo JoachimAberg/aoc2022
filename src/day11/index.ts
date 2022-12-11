@@ -67,7 +67,7 @@ const part2 = (rawInput: string) => {
     let testNum = +monkey[3].trim().split(" ")[3];
     let ifTrue = +monkey[4].trim().split(" ")[5];
     let ifFalse = +monkey[5].trim().split(" ")[5];
-    superMod *= +monkey[3].trim().split(" ")[3];
+    superMod *= +monkey[3].trim().split(" ")[3]; //Credits till internet för denna
 
     monkeyList.push(
       new Monkey(
