@@ -1,6 +1,8 @@
 import run from "aocrunner";
 
 const parseInput = (rawInput: string) => rawInput;
+
+let superMod = 1;
 type Operation = (old: number) => number;
 type Test = (
   val: number,
@@ -12,20 +14,20 @@ const part1 = (rawInput: string) => {
   const input = parseInput(rawInput)
     .split("\n\n")
     .map((m) => m.split("\n"));
-  // console.log(input.length);
+
+    superMod = 1;
   let monkeyList: Monkey[] = [];
   input.forEach((monkey) => {
     let items = monkey[1]
       .substring(monkey[1].indexOf(":") + 1)
       .split(",")
       .map(Number);
-    // console.log(items);
 
     let operation = monkey[2].substring(monkey[2].indexOf("=") + 1);
     let testNum = +monkey[3].trim().split(" ")[3];
+    superMod *= +monkey[3].trim().split(" ")[3];
     let ifTrue = +monkey[4].trim().split(" ")[5];
     let ifFalse = +monkey[5].trim().split(" ")[5];
-    // console.log(items, operation, testNum, ifTrue, ifFalse);
 
     monkeyList.push(
       new Monkey(
@@ -38,8 +40,7 @@ const part1 = (rawInput: string) => {
       ),
     );
   });
-  
-  // console.log(monkeyList);
+
   for (let i = 0; i < 20; i++) {
     round(monkeyList, true);
   }
@@ -52,20 +53,21 @@ const part2 = (rawInput: string) => {
   const input = parseInput(rawInput)
     .split("\n\n")
     .map((m) => m.split("\n"));
-   console.log(input.length);
-  let monkeyList: Monkey[] = [];
+
+    let monkeyList: Monkey[] = [];
+
+  superMod = 1;
   input.forEach((monkey) => {
     let items = monkey[1]
       .substring(monkey[1].indexOf(":") + 1)
       .split(",")
       .map(Number);
-    // console.log(items);
 
     let operation = monkey[2].substring(monkey[2].indexOf("=") + 1);
     let testNum = +monkey[3].trim().split(" ")[3];
     let ifTrue = +monkey[4].trim().split(" ")[5];
     let ifFalse = +monkey[5].trim().split(" ")[5];
-    // console.log(items, operation, testNum, ifTrue, ifFalse);
+    superMod *= +monkey[3].trim().split(" ")[3];
 
     monkeyList.push(
       new Monkey(
@@ -77,30 +79,21 @@ const part2 = (rawInput: string) => {
         (old) => +eval(operation),
       ),
     );
-    
   });
-  
-  console.log(monkeyList);
-  for (let i = 0; i < 1000; i++) {
-    // console.log(i)
+
+  for (let i = 0; i < 10000; i++) {
     round(monkeyList, false);
   }
   let sorted = monkeyList.map((m) => m.inspected).sort((a, b) => b - a);
-  console.log(monkeyList.map(m=>m.items));
-  
-  console.log(sorted);
-  
+
   return sorted[0] * sorted[1];
 };
 
 function round(monkeys: Monkey[], divide: boolean) {
   monkeys.forEach((m) => {
-    // console.log("APA: "+m.name);
-
     for (let i = 0; i < m.items.length; i++) {
       let nextMonkey = m.nextMonkey(i, divide);
       let item = m.items[i];
-      // console.log("flyttar " + item + " till " + nextMonkey);
 
       monkeys[nextMonkey].items.push(item);
     }
@@ -134,14 +127,11 @@ class Monkey {
   }
 
   public nextMonkey(i: number, divide: boolean) {
-    // console.log(
-    //   this.name + " inspects an item with a worry level of " + this.items[i],
-    // );
     this.inspected++;
-    if(divide){
-      this.items[i] = Math.floor(this.operation(this.items[i]) / 3);
+    if (divide) {
+      this.items[i] = Math.floor(this.operation(this.items[i]) / 3) % superMod;
     } else {
-      this.items[i] = this.operation(this.items[i]);
+      this.items[i] = this.operation(this.items[i]) % superMod;
     }
 
     return this.items[i] % this.testNum == 0 ? this.ifTrue : this.ifFalse;
@@ -220,5 +210,5 @@ Monkey 3:
     solution: part2,
   },
   trimTestInputs: true,
-  onlyTests: true,
+  onlyTests: false,
 });
