@@ -45,7 +45,7 @@ const part2 = (rawInput: string) => {
   let crt=[...Array(240).keys()].map(a=>".").join("");
   for (let i = 1; i <= arr.length; i++) {
     if (Math.abs(i%40-arr[i-1])<=1){
-      crt = setCharAt(crt, i);
+      crt = drawLitPixel(crt, i);
     }  
   }
   console.log(crt.substring(0,40))
@@ -56,7 +56,7 @@ const part2 = (rawInput: string) => {
   console.log(crt.substring(200))
   return;
 };
-function setCharAt(str:string,index: number) {
+function drawLitPixel(str:string,index: number) {
   if(index > str.length-1) return str;
   return str.substring(0,index) + "#" + str.substring(index+1);
 }

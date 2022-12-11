@@ -18,7 +18,9 @@
     "aocrunner": "^1.6.1",
     "prettier": "^2.4.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "divide-bigint": "^1.0.4"
+  },
   "engines": {
     "node": ">=16.13.0"
   }
